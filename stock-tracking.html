@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>持股建議追蹤表 - 老王 / 浦惠投顧</title>
+<style>
+  :root {
+    --red: #d32f2f;
+    --green: #388e3c;
+    --bg: #0d1117;
+    --card: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --text2: #8b949e;
+    --accent: #58a6ff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    padding: 16px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  h1 { font-size: 1.4em; text-align: center; margin-bottom: 4px; }
+  .subtitle { text-align: center; color: var(--text2); font-size: 0.85em; margin-bottom: 20px; }
+  .tag {
+    display: inline-block; background: #1f6feb33; color: var(--accent);
+    padding: 2px 10px; border-radius: 12px; font-size: 0.78em; margin-right: 6px;
+  }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 18px; margin-bottom: 20px;
+  }
+  .card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; flex-wrap: wrap; gap: 8px; }
+  .stock-name { font-size: 1.25em; font-weight: 700; }
+  .stock-code { color: var(--text2); font-size: 0.9em; margin-left: 8px; }
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-bottom: 14px; }
+  .info-item { display: flex; flex-direction: column; }
+  .info-label { font-size: 0.78em; color: var(--text2); margin-bottom: 2px; }
+  .info-value { font-size: 0.95em; font-weight: 600; }
+  .industry {
+    background: #23863615; border-left: 3px solid var(--green);
+    padding: 8px 12px; border-radius: 0 8px 8px 0; font-size: 0.88em; margin-bottom: 14px; line-height: 1.5;
+  }
+  .reasons { font-size: 0.88em; line-height: 1.7; margin-bottom: 14px; }
+  .reasons strong { color: var(--accent); }
+  .section-title { font-size: 0.95em; font-weight: 700; margin: 16px 0 10px; display: flex; align-items: center; gap: 6px; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.82em; }
+  th, td { padding: 8px 6px; text-align: center; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  th { background: #21262d; color: var(--text2); font-weight: 600; position: sticky; top: 0; }
+  td:first-child, th:first-child { text-align: left; }
+  .up { color: var(--red); font-weight: 700; }
+  .down { color: var(--green); font-weight: 700; }
+  .neutral { color: var(--text2); }
+  .status-ok { color: var(--green); }
+  .status-warn { color: #f0a520; }
+  .status-stop { color: var(--red); }
+
+  .summary-card {
+    background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+    border-radius: 12px; padding: 20px; margin-bottom: 24px;
+  }
+  .summary-title { font-size: 1.05em; font-weight: 700; margin-bottom: 14px; text-align: center; }
+  .summary-table { width: 100%; }
+  .summary-table th { background: rgba(255,255,255,0.06); }
+  .summary-note { font-size: 0.82em; color: var(--accent); margin-top: 10px; line-height: 1.5; }
+
+  .empty-hint { text-align: center; color: var(--text2); padding: 30px; font-size: 0.9em; }
+  .footer {
+    text-align: center; color: var(--text2); font-size: 0.75em;
+    margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border);
+  }
+  @media (max-width: 600px) {
+    body { padding: 10px; } .card { padding: 14px; }
+    table { font-size: 0.76em; } th, td { padding: 6px 4px; }
+  }
+</style>
+</head>
+<body>
+
+<h1>📊 持股建議追蹤表</h1>
+<p class="subtitle">老王 / 浦惠投顧 / PressPlay &nbsp;|&nbsp; 資料來源：PressPlay 每晚 22:30 推出</p>
+
+<!-- ========== 收盤總結 ========== -->
+<div class="summary-card">
+  <div class="summary-title">📈 每日收盤總結 — 2026/05/22（五）</div>
+  <table class="summary-table">
+    <thead>
+      <tr><th>股票</th><th>今日收盤</th><th>日漲跌</th><th>漲跌幅%</th><th>距推薦日%</th><th>停損狀態</th></tr>
+    </thead>
+    <tbody>
+      <tr><td style="text-align:left;">8046 南電</td><td class="up">934.00</td><td class="up">+62.00</td><td class="up">+7.11%</td><td class="up">+7.11%</td><td class="status-ok">✅ 正常</td></tr>
+      <tr><td style="text-align:left;">6462 神盾</td><td class="up">144.50</td><td class="up">+4.00</td><td class="up">+2.85%</td><td class="up">+2.85%</td><td class="status-ok">✅ 正常</td></tr>
+      <tr><td style="text-align:left;">2388 威盛</td><td class="up">88.00</td><td class="up">+2.00</td><td class="up">+2.33%</td><td class="up">+2.33%</td><td class="status-ok">✅ 正常</td></tr>
+    </tbody>
+  </table>
+  <div class="summary-note">📊 首日追蹤（5/22）：三檔全紅！南電大漲 +7% 最強 🔥 均未觸及停損。</div>
+</div>
+
+<!-- ========== 8046 南電 ========== -->
+<div class="card">
+  <div class="card-header">
+    <div>
+      <span class="stock-name">南電</span>
+      <span class="stock-code">8046.TT</span>
+      <span class="tag">進行中</span>
+    </div>
+    <div style="color:var(--text2);font-size:0.84em;">推薦：2026/05/21（四）</div>
+  </div>
+  <div class="industry">📌 <strong>產業類別：</strong>IC基板／ABF載板 — 大摩看多ABF產業，目標價調升至1275元，南電為獲利彈性最大受惠者</div>
+  <div class="info-grid">
+    <div class="info-item"><span class="info-label">推薦日收盤價</span><span class="info-value" style="color:var(--accent)">872.00 元</span></div>
+    <div class="info-item"><span class="info-label">停損規則</span><span class="info-value" style="color:#f0a520">跌破五日、十日與月均線停損</span></div>
+  </div>
+  <div class="reasons">
+    【<strong style="color:#4fc3f7">技術面</strong>】千元回檔修正後站回三條短期均線，形成三陽開泰重新轉強，看好反彈重返千關<br>
+    【<strong style="color:#ce93d8">籌碼面</strong>】投信終結連續多日賣超開始轉買<br>
+    【<strong style="color:#ffb74d">題材面</strong>】大摩看多ABF產業，目標價調升至1275元，南電為獲利彈性最大受惠者
+  </div>
+  <div class="section-title">📈 每日追蹤</div>
+  <table>
+    <thead><tr><th>日期</th><th>收盤價</th><th>漲跌</th><th>漲跌幅%</th><th>距推薦日%</th><th>停損</th></tr></thead>
+    <tbody>
+      <tr><td style="text-align:left;color:var(--accent);">2026/05/21（推薦日）</td><td>872.00</td><td class="neutral">—</td><td class="neutral">—</td><td class="neutral">—</td><td class="status-ok">✅</td></tr>
+      <tr><td style="text-align:left;">2026/05/22（五）</td><td>934.00</td><td class="up">+62.00</td><td class="up">+7.11%</td><td class="up">+7.11%</td><td class="status-ok">✅</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ========== 6462 神盾 ========== -->
+<div class="card">
+  <div class="card-header">
+    <div>
+      <span class="stock-name">神盾</span>
+      <span class="stock-code">6462.TT</span>
+      <span class="tag">進行中</span>
+    </div>
+    <div style="color:var(--text2);font-size:0.84em;">推薦：2026/05/21（四）</div>
+  </div>
+  <div class="industry">📌 <strong>產業類別：</strong>IC設計／指紋辨識晶片 — 子公司乾瞻（AI晶片）5/27 登錄興櫃掛牌，神盾持股62.77%</div>
+  <div class="info-grid">
+    <div class="info-item"><span class="info-label">推薦日收盤價</span><span class="info-value" style="color:var(--accent)">140.50 元</span></div>
+    <div class="info-item"><span class="info-label">停損規則</span><span class="info-value" style="color:#f0a520">跌破月均線停損</span></div>
+  </div>
+  <div class="reasons">
+    【<strong style="color:#4fc3f7">技術面</strong>】股價站在三條短期均線之上，維持三陽開泰多方趨勢，看好突破前波高點<br>
+    【<strong style="color:#ce93d8">籌碼面</strong>】外資與投信近期幾乎都是連續買超的多方結構<br>
+    【<strong style="color:#ffb74d">題材面</strong>】子公司乾瞻下週登錄興櫃掛牌（認購價500元），神盾持股62.77%，持股市值超過94億
+  </div>
+  <div class="section-title">📈 每日追蹤</div>
+  <table>
+    <thead><tr><th>日期</th><th>收盤價</th><th>漲跌</th><th>漲跌幅%</th><th>距推薦日%</th><th>停損</th></tr></thead>
+    <tbody>
+      <tr><td style="text-align:left;color:var(--accent);">2026/05/21（推薦日）</td><td>140.50</td><td class="neutral">—</td><td class="neutral">—</td><td class="neutral">—</td><td class="status-ok">✅</td></tr>
+      <tr><td style="text-align:left;">2026/05/22（五）</td><td>144.50</td><td class="up">+4.00</td><td class="up">+2.85%</td><td class="up">+2.85%</td><td class="status-ok">✅</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ========== 2388 威盛 ========== -->
+<div class="card">
+  <div class="card-header">
+    <div>
+      <span class="stock-name">威盛</span>
+      <span class="stock-code">2388.TW</span>
+      <span class="tag">進行中</span>
+    </div>
+    <div style="color:var(--text2);font-size:0.84em;">推薦：2026/05/21（四）</div>
+  </div>
+  <div class="industry">📌 <strong>產業類別：</strong>IC設計／VAI視覺AI／車用嵌入式 — 營收爆發式成長中</div>
+  <div class="info-grid">
+    <div class="info-item"><span class="info-label">推薦日收盤價</span><span class="info-value" style="color:var(--accent)">86.00 元</span></div>
+    <div class="info-item"><span class="info-label">停損規則</span><span class="info-value" style="color:#f0a520">跌破五日、十日與月均線停損</span></div>
+  </div>
+  <div class="reasons">
+    【<strong style="color:#4fc3f7">技術面</strong>】股價創波段新高，突破5/4波段最大量高點壓力，成功換手型態<br>
+    【<strong style="color:#ce93d8">籌碼面</strong>】外資買超高強度連動，前天單日大買近九千張<br>
+    【<strong style="color:#81c784">基本面</strong>】3月營收11.28億（月增89.2%、年增69.4%），4月維持11.14億高檔（年增超過八成）
+  </div>
+  <div class="section-title">📈 每日追蹤</div>
+  <table>
+    <thead><tr><th>日期</th><th>收盤價</th><th>漲跌</th><th>漲跌幅%</th><th>距推薦日%</th><th>停損</th></tr></thead>
+    <tbody>
+      <tr><td style="text-align:left;color:var(--accent);">2026/05/21（推薦日）</td><td>86.00</td><td class="neutral">—</td><td class="neutral">—</td><td class="neutral">—</td><td class="status-ok">✅</td></tr>
+      <tr><td style="text-align:left;">2026/05/22（五）</td><td>88.00</td><td class="up">+2.00</td><td class="up">+2.33%</td><td class="up">+2.33%</td><td class="status-ok">✅</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ========== 已結束 ========== -->
+<div class="card">
+  <div class="section-title">📋 已結束持倉</div>
+  <div class="empty-hint">（暫無已結束的持倉）</div>
+</div>
+
+<div class="footer">
+  最後更新時間：2026-05-24 19:44 &nbsp;|&nbsp; 自動更新：每個交易日收盤後<br>
+  ⚠️ 嚴格執行停損 — 觸及即標記退出
+</div>
+
+</body>
+</html>
