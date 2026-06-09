@@ -6,56 +6,20 @@
 <title>持股建議追蹤表 - 老王 / 浦惠投顧</title>
 <style>
   :root {
-    --red: #d32f2f;
-    --green: #388e3c;
-    --bg: #0d1117;
-    --card: #161b22;
-    --border: #30363d;
-    --text: #e6edf3;
-    --text2: #8b949e;
-    --accent: #58a6ff;
+    --red: #d32f2f; --green: #388e3c; --bg: #0d1117; --card: #161b22;
+    --border: #30363d; --text: #e6edf3; --text2: #8b949e; --accent: #58a6ff;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    padding: 16px;
-    max-width: 800px;
-    margin: 0 auto;
+    background: var(--bg); color: var(--text); padding: 16px; max-width: 800px; margin: 0 auto;
   }
   h1 { font-size: 1.4em; text-align: center; margin-bottom: 4px; }
   .subtitle { text-align: center; color: var(--text2); font-size: 0.85em; margin-bottom: 20px; }
-  .tag {
-    display: inline-block; background: #1f6feb33; color: var(--accent);
-    padding: 2px 10px; border-radius: 12px; font-size: 0.78em; margin-right: 6px;
-  }
-  .tag-ended {
-    display: inline-block; background: rgba(211,47,47,0.2); color: var(--red);
-    padding: 2px 10px; border-radius: 12px; font-size: 0.78em; margin-right: 6px;
-  }
   .card {
     background: var(--card); border: 1px solid var(--border); border-radius: 12px;
     padding: 18px; margin-bottom: 20px;
   }
-  .card-ended {
-    background: var(--card); border: 1px solid rgba(211,47,47,0.5); border-radius: 12px;
-    padding: 18px; margin-bottom: 20px;
-  }
-  .card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; flex-wrap: wrap; gap: 8px; }
-  .stock-name { font-size: 1.25em; font-weight: 700; }
-  .stock-code { color: var(--text2); font-size: 0.9em; margin-left: 8px; }
-  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-bottom: 14px; }
-  .info-item { display: flex; flex-direction: column; }
-  .info-label { font-size: 0.78em; color: var(--text2); margin-bottom: 2px; }
-  .info-value { font-size: 0.95em; font-weight: 600; }
-  .industry {
-    background: #23863615; border-left: 3px solid var(--green);
-    padding: 8px 12px; border-radius: 0 8px 8px 0; font-size: 0.88em; margin-bottom: 14px; line-height: 1.5;
-  }
-  .reasons { font-size: 0.88em; line-height: 1.7; margin-bottom: 14px; }
-  .reasons strong { color: var(--accent); }
-  .section-title { font-size: 0.95em; font-weight: 700; margin: 16px 0 10px; display: flex; align-items: center; gap: 6px; }
   table { width: 100%; border-collapse: collapse; font-size: 0.82em; }
   th, td { padding: 8px 6px; text-align: center; border-bottom: 1px solid var(--border); white-space: nowrap; }
   th { background: #21262d; color: var(--text2); font-weight: 600; position: sticky; top: 0; }
@@ -63,29 +27,35 @@
   .up { color: var(--red); font-weight: 700; }
   .down { color: var(--green); font-weight: 700; }
   .neutral { color: var(--text2); }
-  .status-ok { color: var(--green); }
-  .status-warn { color: #f0a520; }
-  .status-stop { color: var(--red); }
+  .status-ok { color: #238636; font-weight: 700; }
+  .status-warn { color: #f0a520; font-weight: 700; }
+  .status-stop { color: var(--red); font-weight: 700; }
 
   .summary-card {
     background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
     border-radius: 12px; padding: 20px; margin-bottom: 24px;
   }
   .summary-title { font-size: 1.05em; font-weight: 700; margin-bottom: 14px; text-align: center; }
-  .summary-table { width: 100%; }
-  .summary-table th { background: rgba(255,255,255,0.06); }
-  .summary-note { font-size: 0.82em; color: var(--accent); margin-top: 10px; line-height: 1.5; }
+  .summary-note { font-size: 0.82em; color: var(--accent); margin-top: 14px; line-height: 1.6; }
+  .summary-note .danger { color: var(--red); }
+  .summary-note .warn { color: #f0a520; }
+  .summary-note .good { color: #238636; }
 
-  .empty-hint { text-align: center; color: var(--text2); padding: 30px; font-size: 0.9em; }
+  .alert-box {
+    background: rgba(211,47,47,0.12); border: 1px solid rgba(211,47,47,0.4);
+    border-radius: 8px; padding: 12px 16px; margin-bottom: 16px; font-size: 0.88em; line-height: 1.6;
+  }
+  .alert-box strong { color: var(--red); }
+  .ended-table { opacity: 0.85; }
   .footer {
     text-align: center; color: var(--text2); font-size: 0.75em;
     margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border);
   }
-  .exit-info {
-    background: rgba(211,47,47,0.12); border: 1px solid rgba(211,47,47,0.3);
-    border-radius: 8px; padding: 10px 14px; margin-bottom: 14px; font-size: 0.88em; line-height: 1.6;
+  .tag {
+    display: inline-block; background: rgba(31,111,235,0.2); color: var(--accent);
+    padding: 2px 8px; border-radius: 10px; font-size: 0.75em; margin-right: 4px;
   }
-  .exit-info strong { color: var(--red); }
+  .num { font-variant-numeric: tabular-nums; }
   @media (max-width: 600px) {
     body { padding: 10px; } .card { padding: 14px; }
     table { font-size: 0.76em; } th, td { padding: 6px 4px; }
@@ -93,523 +63,173 @@
 </style>
 </head>
 <body>
-
 <h1>📊 持股建議追蹤表</h1>
-<p class="subtitle">老王 / 浦惠投顧 / PressPlay &nbsp;|&nbsp; 資料來源：PressPlay 每晚 22:30 推出</p>
+<p class="subtitle">老王 / 浦惠投顧 / PressPlay &nbsp;|&nbsp; 最後更新：2026/06/09 收盤</p>
+
+<!-- ========== ALERT: 今日停損出場 ========== -->
+<div class="alert-box">
+  <strong>🔴 今日（6/9）四檔確認停損出場：</strong><br>
+  • <strong>3526 凡甲</strong>：收345.0跌破停損價354，距推薦虧-7.5%<br>
+  • <strong>3006 晶豪科</strong>：收214.5跌破停損價218，距推薦虧-7.3%<br>
+  • <strong>6462 神盾</strong>：收112.0跌破月線(129.6)，連八跌後距推薦虧-20.3%<br>
+  • <strong>3264 欣銓</strong>：收216.5全數跌破5MA(224)/10MA(227)，距推薦虧-6.3%
+</div>
 
 <!-- ========== 收盤總結 ========== -->
 <div class="summary-card">
-  <div class="summary-title">📊 收盤總結 — 2026/05/28（四）</div>
-  <table class="summary-table">
+  <div class="summary-title">📊 收盤總結 — 2026/06/09（二）</div>
+  <table>
     <thead>
       <tr><th>股票</th><th>收盤價</th><th>日漲跌</th><th>漲跌幅%</th><th>距推薦日%</th><th>停損狀態</th></tr>
     </thead>
     <tbody>
-<tr>
-        <td>8046 南電</td>
-        <td class="num">862.00</td>
-        <td class="num">-43.00</td>
-        <td class="num">-4.75%</td>
-        <td class="num">-1.15%</td>
-        <td><span class="badge badge-danger">🔴 </span></td>
-    </tr><tr>
-        <td>6462 神盾</td>
-        <td class="num">122.50</td>
-        <td class="num">-0.50</td>
-        <td class="num">-0.41%</td>
-        <td class="num">-12.81%</td>
-        <td><span class="badge badge-danger">🔴 </span></td>
-    </tr><tr>
-        <td>2388 威盛</td>
-        <td class="num">74.40</td>
-        <td class="num">-1.50</td>
-        <td class="num">-1.98%</td>
-        <td class="num">-13.49%</td>
-        <td><span class="badge badge-danger">🔴 </span></td>
-    </tr><tr>
-        <td>2489 瑞軒</td>
-        <td class="num">47.80</td>
-        <td class="num">-0.85</td>
-        <td class="num">-1.75%</td>
-        <td class="num">+12.34%</td>
-        <td><span class="badge badge-ok">✅ 正常</span></td>
-    </tr><tr>
-        <td>6168 宏齊</td>
-        <td class="num">27.45</td>
-        <td class="num">-0.75</td>
-        <td class="num">-2.66%</td>
-        <td class="num">+4.17%</td>
-        <td><span class="badge badge-ok">✅ 正常</span></td>
-    </tr><tr>
-        <td>6443 元晶</td>
-        <td class="num">42.55</td>
-        <td class="num">+0.45</td>
-        <td class="num">+1.07%</td>
-        <td class="num">-1.62%</td>
-        <td><span class="badge badge-ok">✅ 正常</span></td>
-    </tr><tr>
-        <td>8021 尖點</td>
-        <td class="num">445.00</td>
-        <td class="num">-19.00</td>
-        <td class="num">-4.09%</td>
-        <td class="num">-4.09%</td>
-        <td><span class="badge badge-warn">⚠️ </span></td>
-    </tr><tr>
-        <td>2342 茂訊</td>
-        <td class="num">40.60</td>
-        <td class="num">-1.10</td>
-        <td class="num">-2.64%</td>
-        <td class="num">-5.91%</td>
-        <td><span class="badge badge-warn">⚠️ </span></td>
-    </tr><tr>
-        <td>3526 凡甲</td>
-        <td class="num">370.50</td>
-        <td class="num">+6.50</td>
-        <td class="num">+1.79%</td>
-        <td class="num">-0.67%</td>
-        <td><span class="badge badge-ok">✅ 正常</span></td>
-    </tr><tr>
-        <td>2337 旺宏</td>
-        <td class="num">175.50</td>
-        <td class="num">+8.00</td>
-        <td class="num">+4.78%</td>
-        <td class="num">+9.35%</td>
-        <td><span class="badge badge-ok">✅ 正常</span></td>
-    </tr><tr>
-        <td>3006 晶豪科</td>
-        <td class="num">267.50</td>
-        <td class="num">+17.50</td>
-        <td class="num">+7.00%</td>
-        <td class="num">+15.55%</td>
-        <td><span class="badge badge-ok">✅ 正常</span></td>
-    </tr><tr>
-        <td>3264 欣銓</td>
-        <td class="num">214.50</td>
-        <td class="num">-8.50</td>
-        <td class="num">-3.81%</td>
-        <td class="num">-7.14%</td>
-        <td><span class="badge badge-warn">⚠️ </span></td>
+    <tr>
+      <td><strong>8046</strong> 南電</td>
+      <td class="num">914.00</td>
+      <td class="num"><span class="up">+83.00</span></td>
+      <td class="num"><span class="up">+9.99%</span></td>
+      <td class="num"><span class="up">+4.82%</span></td>
+      <td><span class="status-ok">✅ 正常</span></td>
     </tr>
-</tbody>
-  </table>
-  <div class="summary-note" style="color:#f0a520">🔴 5/28 全市大跌：原8檔全部收黑。南電-6.08%跌破5/10/月均線、神盾連兩日重挫累跌逾15%距推薦已虧-11%、尖點-4.13%跌破5MA，三檔亮紅燈接近停損。元晶連三日緩跌逼近月線。瑞軒(+12.81%)與宏齊(+3.98%)仍為僅存正報酬標的。凡甲最抗跌(-0.5%)距停損354仍有4.5%空間。威盛已於5/27停損出場(-13.49%)。<br><br>🆕 <span style="color:var(--accent)">新增三檔 5/26 推薦：旺宏(+2.9%)反彈站回季線，晶豪科(+0.6%)續創高距停損218有10.6%空間，欣銓(+2.6%)大漲6元。三檔均未觸及停損。</span></div>
-</div>
-
-<!-- ========== 8046 南電 ========== -->
-<div class="card">
-  <div class="card-header">
-    <div>
-      <span class="stock-name">南電</span>
-      <span class="stock-code">8046.TT</span>
-      <span class="tag">進行中</span>
-    </div>
-    <div style="color:var(--text2);font-size:0.84em;">推薦：2026/05/21（四）</div>
-  </div>
-  <div class="industry">📌 <strong>產業類別：</strong>IC基板／ABF載板 — 大摩看多ABF產業，目標價調升至1275元，南電為獲利彈性最大受惠者</div>
-  <div class="info-grid">
-    <div class="info-item"><span class="info-label">推薦日收盤價</span><span class="info-value" style="color:var(--accent)">872.00 元</span></div>
-    <div class="info-item"><span class="info-label">停損規則</span><span class="info-value" style="color:#f0a520">跌破五日、十日與月均線停損</span></div>
-  </div>
-  <div class="reasons">
-    【<strong style="color:#4fc3f7">技術面</strong>】千元回檔修正後站回三條短期均線，形成三陽開泰重新轉強，看好反彈重返千關<br>
-    【<strong style="color:#ce93d8">籌碼面</strong>】投信終結連續多日賣超開始轉買<br>
-    【<strong style="color:#ffb74d">題材面</strong>】大摩看多ABF產業，目標價調升至1275元，南電為獲利彈性最大受惠者
-  </div>
-  <div class="section-title">📈 每日追蹤</div>
-  <table>
-    <thead><tr><th>日期</th><th>收盤價</th><th>漲跌</th><th>漲跌幅%</th><th>距推薦日%</th><th>停損</th></tr></thead>
-    <tbody>
-      <tr><td style="text-align:left;color:var(--accent);">2026/05/21（推薦日）</td><td>872.00</td><td class="neutral">—</td><td class="neutral">—</td><td class="neutral">—</td><td class="status-ok">✅</td></tr>
-      <tr><td style="text-align:left;">2026/05/22（五）</td><td>934.00</td><td class="up">+62.00</td><td class="up">+7.11%</td><td class="up">+7.11%</td><td class="status-ok">✅</td></tr>
-      <tr><td style="text-align:left;">2026/05/25（一）</td><td>884.00</td><td class="down">-50.00</td><td class="down">-5.35%</td><td class="up">+1.38%</td><td class="status-ok">✅</td></tr>
-      <tr><td style="text-align:left;">2026/05/26（二）盤中</td><td>909.00</td><td class="up">+25.00</td><td class="up">+2.83%</td><td class="up">+4.28%</td><td class="status-ok">✅</td></tr>
-      <tr style="background:rgba(88,166,255,0.08)"><td style="text-align:left;">2026/05/26（二）**收盤**</td><td><b>922.00</b></td><td class="up">+38.00</td><td class="up">+4.30%</td><td class="up">+5.74%</td><td class="status-ok">✅</td></tr>
-      <tr><td style="text-align:left;">2026/05/27（三）</td><td>905.00</td><td class="down">-17.00</td><td class="down">-1.84%</td><td class="up">+3.78%</td><td class="status-ok">✅</td></tr>
-      <tr style="background:rgba(211,47,47,0.12)"><td style="text-align:left;">2026/05/28（四）🔴</td><td><b>850.00</b></td><td class="down">-55.00</td><td class="down">-6.08%</td><td class="down">-2.52%</td><td class="status-stop">🔴 跌破5/10/月線</td></tr>
+    <tr>
+      <td><strong>2489</strong> 瑞軒</td>
+      <td class="num">44.25</td>
+      <td class="num"><span class="up">+0.65</span></td>
+      <td class="num"><span class="up">+1.49%</span></td>
+      <td class="num"><span class="up">+4.00%</span></td>
+      <td><span class="status-ok">✅ 正常</span></td>
+    </tr>
+    <tr>
+      <td><strong>6168</strong> 宏齊</td>
+      <td class="num">25.05</td>
+      <td class="num"><span class="up">+0.75</span></td>
+      <td class="num"><span class="up">+3.09%</span></td>
+      <td class="num"><span class="down">-4.93%</span></td>
+      <td><span class="status-stop">🔴 危險</span></td>
+    </tr>
+    <tr>
+      <td><strong>6443</strong> 元晶</td>
+      <td class="num">39.70</td>
+      <td class="num"><span class="up">+3.55</span></td>
+      <td class="num"><span class="up">+9.82%</span></td>
+      <td class="num"><span class="down">-8.21%</span></td>
+      <td><span class="status-stop">🔴 危險</span></td>
+    </tr>
+    <tr>
+      <td><strong>8021</strong> 尖點</td>
+      <td class="num">506.00</td>
+      <td class="num"><span class="up">+46.00</span></td>
+      <td class="num"><span class="up">+10.00%</span></td>
+      <td class="num"><span class="up">+9.05%</span></td>
+      <td><span class="status-ok">✅ 正常</span></td>
+    </tr>
+    <tr>
+      <td><strong>2342</strong> 茂訊</td>
+      <td class="num">41.35</td>
+      <td class="num"><span class="up">+2.45</span></td>
+      <td class="num"><span class="up">+6.30%</span></td>
+      <td class="num"><span class="down">-4.17%</span></td>
+      <td><span class="status-stop">🔴 危險</span></td>
+    </tr>
+    <tr>
+      <td><strong>2337</strong> 旺宏</td>
+      <td class="num">145.50</td>
+      <td class="num"><span class="up">+2.00</span></td>
+      <td class="num"><span class="up">+1.39%</span></td>
+      <td class="num"><span class="down">-9.35%</span></td>
+      <td><span class="status-stop">🔴 危險</span></td>
+    </tr>
+    <tr style="text-decoration: line-through; opacity: 0.65;">
+      <td><s>6462 神盾</s></td>
+      <td class="num">112.00</td>
+      <td class="num"><span class="up">+2.50</span></td>
+      <td class="num"><span class="up">+2.28%</span></td>
+      <td class="num"><span class="down">-20.28%</span></td>
+      <td><span class="status-stop">🔴 已出場</span></td>
+    </tr>
+    <tr style="text-decoration: line-through; opacity: 0.65;">
+      <td><s>3526 凡甲</s></td>
+      <td class="num">345.00</td>
+      <td class="num"><span class="down">-23.00</span></td>
+      <td class="num"><span class="down">-6.25%</span></td>
+      <td class="num"><span class="down">-7.51%</span></td>
+      <td><span class="status-stop">🔴 已出場</span></td>
+    </tr>
+    <tr style="text-decoration: line-through; opacity: 0.65;">
+      <td><s>3006 晶豪科</s></td>
+      <td class="num">214.50</td>
+      <td class="num"><span class="up">+7.50</span></td>
+      <td class="num"><span class="up">+3.62%</span></td>
+      <td class="num"><span class="down">-7.34%</span></td>
+      <td><span class="status-stop">🔴 已出場</span></td>
+    </tr>
+    <tr style="text-decoration: line-through; opacity: 0.65;">
+      <td><s>3264 欣銓</s></td>
+      <td class="num">216.50</td>
+      <td class="num"><span class="up">+5.50</span></td>
+      <td class="num"><span class="up">+2.61%</span></td>
+      <td class="num"><span class="down">-6.28%</span></td>
+      <td><span class="status-stop">🔴 已出場</span></td>
+    </tr>
     </tbody>
   </table>
+  <div class="summary-note">
+    <span class="good"><strong>📊 6/9 收盤摘要：</strong></span><br>
+    <span class="good">✅ <strong>強勢安全（3檔）</strong>：尖點漲停+10%收506創新高🔥、南電+10%近乎漲停收914站回均線、瑞軒+1.5%距停損37.5仍有18%空間</span><br>
+    <span class="danger">🔴 <strong>停損出場（4檔）</strong>：凡甲/晶豪科/神盾/欣銓確認停損出場（詳見上方警報）</span><br>
+    <span class="warn">⚠️ <strong>續留警戒（4檔）</strong>：宏齊跌破季線(-4.9%)、元晶跌破月線(-8.2%)、茂訊跌破月線(-4.2%)、旺宏跌破季線(-9.4%)</span>
+  </div>
 </div>
 
-<!-- ========== 6462 神盾 ========== -->
+<!-- ========== 已結束持倉 ========== -->
 <div class="card">
-  <div class="card-header">
-    <div>
-      <span class="stock-name">神盾</span>
-      <span class="stock-code">6462.TT</span>
-      <span class="tag">進行中</span>
-    </div>
-    <div style="color:var(--text2);font-size:0.84em;">推薦：2026/05/21（四）</div>
-  </div>
-  <div class="industry">📌 <strong>產業類別：</strong>IC設計／指紋辨識晶片 — 子公司乾瞻（AI晶片）5/27 登錄興櫃掛牌，神盾持股62.77%</div>
-  <div class="info-grid">
-    <div class="info-item"><span class="info-label">推薦日收盤價</span><span class="info-value" style="color:var(--accent)">140.50 元</span></div>
-    <div class="info-item"><span class="info-label">停損規則</span><span class="info-value" style="color:#f0a520">跌破月均線停損</span></div>
-  </div>
-  <div class="reasons">
-    【<strong style="color:#4fc3f7">技術面</strong>】股價站在三條短期均線之上，維持三陽開泰多方趨勢，看好突破前波高點<br>
-    【<strong style="color:#ce93d8">籌碼面</strong>】外資與投信近期幾乎都是連續買超的多方結構<br>
-    【<strong style="color:#ffb74d">題材面</strong>】子公司乾瞻下週登錄興櫃掛牌（認購價500元），神盾持股62.77%，持股市值超過94億
-  </div>
-  <div class="section-title">📈 每日追蹤</div>
-  <table>
-    <thead><tr><th>日期</th><th>收盤價</th><th>漲跌</th><th>漲跌幅%</th><th>距推薦日%</th><th>停損</th></tr></thead>
+  <h2 style="font-size:1.1em; margin-bottom:14px;">📋 已結束持倉（累計）</h2>
+  <table class="ended-table">
+    <thead>
+      <tr><th>日期</th><th>股票</th><th>名稱</th><th>推薦價</th><th>出場價</th><th>損益%</th><th>天數</th><th>出場原因</th></tr>
+    </thead>
     <tbody>
-      <tr><td style="text-align:left;color:var(--accent);">2026/05/21（推薦日）</td><td>140.50</td><td class="neutral">—</td><td class="neutral">—</td><td class="neutral">—</td><td class="status-ok">✅</td></tr>
-      <tr><td style="text-align:left;">2026/05/22（五）</td><td>144.50</td><td class="up">+4.00</td><td class="up">+2.85%</td><td class="up">+2.85%</td><td class="status-ok">✅</td></tr>
-      <tr><td style="text-align:left;">2026/05/25（一）</td><td>155.00</td><td class="up">+10.50</td><td class="up">+7.27%</td><td class="up">+10.32%</td><td class="status-ok">✅</td></tr>
-      <tr><td style="text-align:left;">2026/05/26（二）盤中</td><td>143.00</td><td class="down">-12.00</td><td class="down">-7.74%</td><td class="up">+1.78%</td><td class="status-warn">⚠️</td></tr>
-      <tr style="background:rgba(88,166,255,0.08)"><td style="text-align:left;">2026/05/26（二）**收盤**</td><td><b>146.50</b></td><td class="down">-8.50</td><td class="down">-5.48%</td><td class="up">+4.27%</td><td class="status-ok">✅</td></tr>
-      <tr style="background:rgba(240,165,32,0.12)"><td style="text-align:left;">2026/05/27（三）⚠️</td><td>133.00</td><td class="down">-13.50</td><td class="down">-9.22%</td><td class="down">-5.34%</td><td class="status-warn">⚠️ 接近</td></tr>
-      <tr style="background:rgba(211,47,47,0.12)"><td style="text-align:left;">2026/05/28（四）🔴</td><td><b>125.00</b></td><td class="down">-8.00</td><td class="down">-6.02%</td><td class="down">-11.03%</td><td class="status-stop">🔴 危險</td></tr>
+      <tr>
+        <td>2026/05/28</td><td>2388</td><td>威盛</td>
+        <td class="num">86.00</td><td class="num">74.40</td>
+        <td class="num"><span class="down">-13.49%</span></td>
+        <td>5</td>
+        <td style="text-align:left; white-space:normal; max-width:240px;">🔴 跌破5MA/10MA/月均線停損出場</td>
+      </tr>
+      <tr>
+        <td>2026/06/09</td><td>6462</td><td>神盾</td>
+        <td class="num">140.50</td><td class="num">112.00</td>
+        <td class="num"><span class="down">-20.28%</span></td>
+        <td>14</td>
+        <td style="text-align:left; white-space:normal; max-width:240px;">🔴 跌破月均線停損出場</td>
+      </tr>
+      <tr>
+        <td>2026/06/09</td><td>3526</td><td>凡甲</td>
+        <td class="num">373.00</td><td class="num">345.00</td>
+        <td class="num"><span class="down">-7.51%</span></td>
+        <td>12</td>
+        <td style="text-align:left; white-space:normal; max-width:240px;">🔴 跌破停損價354出場</td>
+      </tr>
+      <tr>
+        <td>2026/06/09</td><td>3006</td><td>晶豪科</td>
+        <td class="num">231.50</td><td class="num">214.50</td>
+        <td class="num"><span class="down">-7.34%</span></td>
+        <td>11</td>
+        <td style="text-align:left; white-space:normal; max-width:240px;">🔴 跌破停損價218出場</td>
+      </tr>
+      <tr>
+        <td>2026/06/09</td><td>3264</td><td>欣銓</td>
+        <td class="num">231.00</td><td class="num">216.50</td>
+        <td class="num"><span class="down">-6.28%</span></td>
+        <td>11</td>
+        <td style="text-align:left; white-space:normal; max-width:240px;">🔴 跌破5MA/10MA停損出場</td>
+      </tr>
     </tbody>
   </table>
-</div>
-
-<!-- ========== 2489 瑞軒 ========== -->
-<div class="card">
-  <div class="card-header">
-    <div>
-      <span class="stock-name">瑞軒</span>
-      <span class="stock-code">2489.TW</span>
-      <span class="tag">進行中</span>
-    </div>
-    <div style="color:var(--text2);font-size:0.84em;">推薦：2026/05/20（二）</div>
-  </div>
-  <div class="industry">📌 <strong>產業類別：</strong>光通訊／顯示器代工轉型矽光子 — 今年明確推進光通訊轉型，矽光子題材可望帶動評價重估</div>
-  <div class="info-grid">
-    <div class="info-item"><span class="info-label">推薦日收盤價</span><span class="info-value" style="color:var(--accent)">42.55 元</span></div>
-    <div class="info-item"><span class="info-label">停損規則</span><span class="info-value" style="color:#f0a520">跌破波段低點 37.5 元停損</span></div>
-  </div>
-  <div class="reasons">
-    【<strong style="color:#4fc3f7">技術面</strong>】股價已經站上所有短中期均線，形成四海遊龍多方型態，看好只要出量就能發動攻擊反彈<br>
-    【<strong style="color:#ce93d8">籌碼面</strong>】外資與投信全數連續四天站在買方，持續買超就能帶動股價持續反彈<br>
-    【<strong style="color:#ffb74d">題材面</strong>】過去印象是電視與顯示器代工，但今年明確推進光通訊轉型，有矽光子題材可沾光
-  </div>
-  <div class="section-title">📈 每日追蹤</div>
-  <table>
-    <thead><tr><th>日期</th><th>收盤價</th><th>漲跌</th><th>漲跌幅%</th><th>距推薦日%</th><th>停損</th></tr></thead>
-    <tbody>
-      <tr><td style="text-align:left;color:var(--accent);">2026/05/20（推薦日）</td><td>42.55</td><td class="neutral">—</td><td class="neutral">—</td><td class="neutral">—</td><td class="status-ok">✅</td></tr>
-      <tr><td style="text-align:left;">2026/05/21（三）</td><td>46.80</td><td class="up">+4.25</td><td class="up">+9.99%</td><td class="up">+9.99%</td><td class="status-ok">✅</td></tr>
-      <tr><td style="text-align:left;">2026/05/22（五）</td><td>51.40</td><td class="up">+4.60</td><td class="up">+9.83%</td><td class="up">+20.80%</td><td class="status-ok">✅</td></tr>
-      <tr><td style="text-align:left;">2026/05/25（一）</td><td>56.50</td><td class="up">+5.10</td><td class="up">+9.92%</td><td class="up">+32.78%</td><td class="status-ok">✅</td></tr>
-      <tr><td style="text-align:left;">2026/05/26（二）盤中</td><td>51.10</td><td class="down">-5.40</td><td class="down">-9.56%</td><td class="up">+20.09%</td><td class="status-ok">✅</td></tr>
-      <tr style="background:rgba(88,166,255,0.08)"><td style="text-align:left;">2026/05/26（二）**收盤**</td><td><b>51.70</b></td><td class="down">-4.80</td><td class="down">-8.50%</td><td class="up">+21.52%</td><td class="status-ok">✅</td></tr>
-      <tr><td style="text-align:left;">2026/05/27（三）</td><td>50.70</td><td class="down">-1.00</td><td class="down">-1.93%</td><td class="up">+19.15%</td><td class="status-ok">✅</td></tr>
-      <tr><td style="text-align:left;">2026/05/28（四）</td><td><b>48.00</b></td><td class="down">-2.70</td><td class="down">-5.33%</td><td class="up">+12.81%</td><td class="status-ok">✅</td></tr>
-    </tbody>
-  </table>
-</div>
-
-<!-- ========== 6168 宏齊 ========== -->
-<div class="card">
-  <div class="card-header">
-    <div>
-      <span class="stock-name">宏齊</span>
-      <span class="stock-code">6168.TW</span>
-      <span class="tag">進行中</span>
-    </div>
-    <div style="color:var(--text2);font-size:0.84em;">推薦：2026/05/20（二）</div>
-  </div>
-  <div class="industry">📌 <strong>產業類別：</strong>LED／半導體測試 — 攜手久元切入高階半導體，法人評價從 LED 上調為半導體概念股</div>
-  <div class="info-grid">
-    <div class="info-item"><span class="info-label">推薦日收盤價</span><span class="info-value" style="color:var(--accent)">26.35 元</span></div>
-    <div class="info-item"><span class="info-label">停損規則</span><span class="info-value" style="color:#f0a520">跌破季均線停損</span></div>
-  </div>
-  <div class="reasons">
-    【<strong style="color:#4fc3f7">技術面</strong>】股價準備站回三條短期均線形成三陽開泰，看好短線反彈<br>
-    【<strong style="color:#81c784">基本面</strong>】四月營收月增年增皆超過一成，營收持續復甦中<br>
-    【<strong style="color:#ffb74d">題材面</strong>】攜手同集團 IC 測試廠久元切入高毛利高階半導體領域，法人評價上調為半導體概念股
-  </div>
-  <div class="section-title">📈 每日追蹤</div>
-  <table>
-    <thead><tr><th>日期</th><th>收盤價</th><th>漲跌</th><th>漲跌幅%</th><th>距推薦日%</th><th>停損</th></tr></thead>
-    <tbody>
-      <tr><td style="text-align:left;color:var(--accent);">2026/05/20（推薦日）</td><td>26.35</td><td class="neutral">—</td><td class="neutral">—</td><td class="neutral">—</td><td class="status-ok">✅</td></tr>
-      <tr><td style="text-align:left;">2026/05/21（四）</td><td>28.00</td><td class="up">+1.65</td><td class="up">+6.27%</td><td class="up">+6.27%</td><td class="status-ok">✅</td></tr>
-      <tr><td style="text-align:left;">2026/05/22（五）</td><td>30.80</td><td class="up">+2.80</td><td class="up">+10.00%</td><td class="up">+16.89%</td><td class="status-ok">✅</td></tr>
-      <tr><td style="text-align:left;">2026/05/25（一）</td><td>30.90</td><td class="up">+0.10</td><td class="up">+0.32%</td><td class="up">+17.27%</td><td class="status-ok">✅</td></tr>
-      <tr><td style="text-align:left;">2026/05/26（二）盤中</td><td>28.45</td><td class="down">-2.45</td><td class="down">-7.93%</td><td class="up">+7.97%</td><td class="status-ok">✅</td></tr>
-      <tr style="background:rgba(88,166,255,0.08)"><td style="text-align:left;">2026/05/26（二）**收盤**</td><td><b>28.50</b></td><td class="down">-2.40</td><td class="down">-7.77%</td><td class="up">+8.17%</td><td class="status-ok">✅</td></tr>
-      <tr><td style="text-align:left;">2026/05/27（三）</td><td>28.00</td><td class="down">-0.50</td><td class="down">-1.75%</td><td class="up">+6.26%</td><td class="status-ok">✅</td></tr>
-      <tr><td style="text-align:left;">2026/05/28（四）</td><td><b>27.40</b></td><td class="down">-0.60</td><td class="down">-2.14%</td><td class="up">+3.98%</td><td class="status-ok">✅</td></tr>
-    </tbody>
-  </table>
-</div>
-
-<!-- ========== 6443 元晶 ========== -->
-<div class="card">
-  <div class="card-header">
-    <div>
-      <span class="stock-name">元晶</span>
-      <span class="stock-code">6443.TW</span>
-      <span class="tag">進行中</span>
-    </div>
-    <div style="color:var(--text2);font-size:0.84em;">推薦：2026/05/25（一）</div>
-  </div>
-  <div class="industry">📌 <strong>產業類別：</strong>太陽能／SpaceX 供應鏈 — 已通過 SpaceX 認證，太陽能產品隨火箭衛星升空，最純 SpaceX 概念股</div>
-  <div class="info-grid">
-    <div class="info-item"><span class="info-label">推薦日收盤價</span><span class="info-value" style="color:var(--accent)">43.25 元</span></div>
-    <div class="info-item"><span class="info-label">停損規則</span><span class="info-value" style="color:#f0a520">跌破月均線停損</span></div>
-  </div>
-  <div class="reasons">
-    【<strong style="color:#4fc3f7">技術面</strong>】突破季均線形成四海遊龍長線多方型態，看好踩深反彈<br>
-    【<strong style="color:#81c784">基本面</strong>】營收年減衰退、獲利虧損 — 但觸是特色不是缺點！越爛越會漲<br>
-    【<strong style="color:#ffb74d">題材面</strong>】SpaceX 概念股大漲，元晶可跟著輪動往上；實際出貨產品已跟隨 SpaceX 火箭衛星升空
-  </div>
-  <div class="section-title">📈 每日追蹤</div>
-  <table>
-    <thead><tr><th>日期</th><th>收盤價</th><th>漲跌</th><th>漲跌幅%</th><th>距推薦日%</th><th>停損</th></tr></thead>
-    <tbody>
-      <tr><td style="text-align:left;color:var(--accent);">2026/05/25（推薦日）</td><td>43.25</td><td class="up">+3.20</td><td class="up">+7.99%</td><td class="neutral">—</td><td class="status-ok">✅</td></tr>
-      <tr><td style="text-align:left;">2026/05/26（二）盤中</td><td>42.60</td><td class="up">+0.65</td><td class="up">+1.50%</td><td class="down">-1.50%</td><td class="status-ok">✅</td></tr>
-      <tr style="background:rgba(88,166,255,0.08)"><td style="text-align:left;">2026/05/26（二）**收盤**</td><td><b>42.30</b></td><td class="down">-0.95</td><td class="down">-2.20%</td><td class="down">-2.20%</td><td class="status-ok">✅</td></tr>
-      <tr style="background:rgba(240,165,32,0.12)"><td style="text-align:left;">2026/05/27（三）⚠️</td><td>41.05</td><td class="down">-1.25</td><td class="down">-2.96%</td><td class="down">-5.09%</td><td class="status-warn">⚠️ 接近</td></tr>
-      <tr style="background:rgba(240,165,32,0.12)"><td style="text-align:left;">2026/05/28（四）⚠️</td><td><b>40.45</b></td><td class="down">-0.60</td><td class="down">-1.46%</td><td class="down">-6.47%</td><td class="status-warn">⚠️ 接近月線</td></tr>
-    </tbody>
-  </table>
-</div>
-
-<!-- ========== 8021 尖點 ========== -->
-<div class="card">
-  <div class="card-header">
-    <div>
-      <span class="stock-name">尖點</span>
-      <span class="stock-code">8021.TW</span>
-      <span class="tag">進行中</span>
-    </div>
-    <div style="color:var(--text2);font-size:0.84em;">推薦：2026/05/25（一）</div>
-  </div>
-  <div class="industry">📌 <strong>產業類別：</strong>半導體封測／IC測試載板 — 四月營收創歷史同期新高，年增63%</div>
-  <div class="info-grid">
-    <div class="info-item"><span class="info-label">推薦日收盤價</span><span class="info-value" style="color:var(--accent)">464.00 元</span></div>
-    <div class="info-item"><span class="info-label">停損規則</span><span class="info-value" style="color:#f0a520">跌破五日、十日與月均線停損</span></div>
-  </div>
-  <div class="reasons">
-    【<strong style="color:#4fc3f7">技術面</strong>】站回三條短期均線形成三陽開泰，守住多方缺口就能反彈挑戰前波高點<br>
-    【<strong style="color:#ce93d8">籌碼面</strong>】外資連續買超 + 投信由賣轉買，土洋法人同步回買超結構<br>
-    【<strong style="color:#81c784">基本面</strong>】四月營收 5.25 億（月增10.97%、年增63.18%）— 歷史同期新高
-  </div>
-  <div class="section-title">📈 每日追蹤</div>
-  <table>
-    <thead><tr><th>日期</th><th>收盤價</th><th>漲跌</th><th>漲跌幅%</th><th>距推薦日%</th><th>停損</th></tr></thead>
-    <tbody>
-      <tr><td style="text-align:left;color:var(--accent);">2026/05/25（推薦日）</td><td>464.00</td><td class="up">+42.00</td><td class="up">+9.95%</td><td class="neutral">—</td><td class="status-ok">✅</td></tr>
-      <tr><td style="text-align:left;">2026/05/26（二）盤中</td><td>428.00</td><td class="down">-36.00</td><td class="down">-7.76%</td><td class="down">-7.76%</td><td class="status-warn">⚠️</td></tr>
-      <tr style="background:rgba(88,166,255,0.08)"><td style="text-align:left;">2026/05/26（二）**收盤**</td><td><b>464.50</b></td><td class="up">+0.50</td><td class="up">+0.11%</td><td class="up">+0.11%</td><td class="status-ok">✅</td></tr>
-      <tr style="background:rgba(211,47,47,0.12)"><td style="text-align:left;">2026/05/27（三）🔴</td><td>436.00</td><td class="down">-28.50</td><td class="down">-6.14%</td><td class="down">-6.03%</td><td class="status-stop">🔴 危險</td></tr>
-      <tr style="background:rgba(211,47,47,0.12)"><td style="text-align:left;">2026/05/28（四）🔴</td><td><b>418.00</b></td><td class="down">-18.00</td><td class="down">-4.13%</td><td class="down">-9.91%</td><td class="status-stop">🔴 跌破5MA</td></tr>
-    </tbody>
-  </table>
-</div>
-
-<!-- ========== 2342 茂訊 ========== -->
-<div class="card">
-  <div class="card-header">
-    <div>
-      <span class="stock-name">茂訊</span>
-      <span class="stock-code">2342.TW</span>
-      <span class="tag">進行中</span>
-    </div>
-    <div style="color:var(--text2);font-size:0.84em;">推薦：2026/05/25（一）</div>
-  </div>
-  <div class="industry">📌 <strong>產業類別：</strong>半導體／第三代半導體概念 — 龍頭亮晶已破前波高，茂矽有望跟上創高</div>
-  <div class="info-grid">
-    <div class="info-item"><span class="info-label">推薦日收盤價</span><span class="info-value" style="color:var(--accent)">43.15 元</span></div>
-    <div class="info-item"><span class="info-label">停損規則</span><span class="info-value" style="color:#f0a520">跌破月均線停損</span></div>
-  </div>
-  <div class="reasons">
-    【<strong style="color:#4fc3f7">技術面</strong>】站回三條短期均線形成三陽開泰，看好短線反彈挑戰前波高點壓力<br>
-    【<strong style="color:#ce93d8">籌碼面</strong>】近期外資持續連續買超，可望推動股價持續上漲直到轉賣才轉弱<br>
-    【<strong style="color:#ffb74d">題材面</strong>】第三代半導體龍頭亮晶已大漲破前波高！漾益連鎖也创波段新高，茂矽有望跟上大漲
-  </div>
-  <div class="section-title">📈 每日追蹤</div>
-  <table>
-    <thead><tr><th>日期</th><th>收盤價</th><th>漲跌</th><th>漲跌幅%</th><th>距推薦日%</th><th>停損</th></tr></thead>
-    <tbody>
-      <tr><td style="text-align:left;color:var(--accent);">2026/05/25（推薦日）</td><td>43.15</td><td class="up">+1.75</td><td class="up">+4.24%</td><td class="neutral">—</td><td class="status-ok">✅</td></tr>
-      <tr><td style="text-align:left;">2026/05/26（二）盤中</td><td>44.10</td><td class="up">+0.95</td><td class="up">+2.20%</td><td class="up">+2.20%</td><td class="status-ok">✅</td></tr>
-      <tr style="background:rgba(88,166,255,0.08)"><td style="text-align:left;">2026/05/26（二）**收盤**</td><td><b>43.35</b></td><td class="up">+0.20</td><td class="up">+0.46%</td><td class="up">+0.46%</td><td class="status-ok">✅</td></tr>
-      <tr><td style="text-align:left;">2026/05/27（三）</td><td>44.05</td><td class="up">+0.70</td><td class="up">+1.61%</td><td class="up">+2.09%</td><td class="status-ok">✅</td></tr>
-      <tr><td style="text-align:left;">2026/05/28（四）</td><td><b>42.40</b></td><td class="down">-1.65</td><td class="down">-3.75%</td><td class="down">-1.74%</td><td class="status-ok">✅</td></tr>
-    </tbody>
-  </table>
-</div>
-
-<!-- ========== 3526 凡甲 ========== -->
-<div class="card">
-  <div class="card-header">
-    <div>
-      <span class="stock-name">凡甲</span>
-      <span class="stock-code">3526.TW</span>
-      <span class="tag">進行中</span>
-    </div>
-    <div style="color:var(--text2);font-size:0.84em;">推薦：2026/05/25（一）</div>
-  </div>
-  <div class="industry">📌 <strong>產業類別：</strong>PCB／AI伺服器 — Q1 EPS 4.7 元创歷史次高，AI伺服器應用占比提升至50-55%</div>
-  <div class="info-grid">
-    <div class="info-item"><span class="info-label">推薦日收盤價</span><span class="info-value" style="color:var(--accent)">373.00 元</span></div>
-    <div class="info-item"><span class="info-label">停損規則</span><span class="info-value" style="color:#f0a520">跌破五日、十日、月均線（或近期低點 354）</span></div>
-  </div>
-  <div class="reasons">
-    【<strong style="color:#4fc3f7">技術面</strong>正在準備站回三條短期均線，形成三陽開泰後就能繼續多頭反彈<br>
-    【<strong style="color:#ce93d8">籌碼面</strong>千張大戶持股比例連續三週往上，创三月以來最高水位！回檔期間大戶仍持續進場<br>
-    【<strong style="color:#81c784">基本面</strong>】Q1 EPS 高達 4.7 元，單季獲利與營收雙創歷史次高！AI伺服器應用占比提升至約 50-55%
-  </div>
-  <div class="section-title">📈 每日追蹤</div>
-  <table>
-    <thead><tr><th>日期</th><th>收盤價</th><th>漲跌</th><th>漲跌幅%</th><th>距推薦日%</th><th>停損</th></tr></thead>
-    <tbody>
-      <tr><td style="text-align:left;color:var(--accent);">2026/05/25（推薦日）</td><td>373.00</td><td class="up">+6.50</td><td class="up">+1.77%</td><td class="neutral">—</td><td class="status-ok">✅</td></tr>
-      <tr><td style="text-align:left;">2026/05/26（二）盤中</td><td>369.50</td><td class="up">+3.50</td><td class="up">+0.94%</td><td class="down">-0.94%</td><td class="status-ok">✅</td></tr>
-      <tr style="background:rgba(88,166,255,0.08)"><td style="text-align:left;">2026/05/26（二）**收盤**</td><td><b>377.00</b></td><td class="up">+4.00</td><td class="up">+1.07%</td><td class="up">+1.07%</td><td class="status-ok">✅</td></tr>
-      <tr><td style="text-align:left;">2026/05/27（三）</td><td>372.00</td><td class="down">-5.00</td><td class="down">-1.33%</td><td class="down">-0.27%</td><td class="status-ok">✅</td></tr>
-      <tr><td style="text-align:left;">2026/05/28（四）</td><td><b>370.00</b></td><td class="down">-2.00</td><td class="down">-0.54%</td><td class="down">-0.80%</td><td class="status-ok">✅</td></tr>
-    </tbody>
-  </table>
-</div>
-
-<!-- ========== 2337 旺宏 ========== -->
-<div class="card">
-  <div class="card-header">
-    <div>
-      <span class="stock-name">旺宏</span>
-      <span class="stock-code">2337.TW</span>
-      <span class="tag">進行中</span>
-    </div>
-    <div style="color:var(--text2);font-size:0.84em;">推薦：2026/05/26（二）</div>
-  </div>
-  <div class="industry">📌 <strong>產業類別：</strong>記憶體／NOR Flash — 第一季獲利大幅改善，記憶體產業景氣回升</div>
-  <div class="info-grid">
-    <div class="info-item"><span class="info-label">推薦日收盤價</span><span class="info-value" style="color:var(--accent)">160.50 元</span></div>
-    <div class="info-item"><span class="info-label">停損規則</span><span class="info-value" style="color:#f0a520">跌破季均線（20日均線）停損</span></div>
-  </div>
-  <div class="reasons">
-    【<strong style="color:#4fc3f7">技術面</strong>】股價期始站上三條短期均線形成三陽開泰，看好短線再往上<br>
-    【<strong style="color:#81c784">基本面</strong>】第一季獲利大幅改善<br>
-    【<strong style="color:#ffb74d">題材面</strong>】記憶體產業景氣回升
-  </div>
-  <div class="section-title">📈 每日追蹤</div>
-  <table>
-    <thead><tr><th>日期</th><th>收盤價</th><th>漲跌</th><th>漲跌幅%</th><th>距推薦日%</th><th>停損</th></tr></thead>
-    <tbody>
-      <tr><td style="text-align:left;color:var(--accent);">2026/05/26（推薦日）</td><td>160.50</td><td class="neutral">—</td><td class="neutral">—</td><td class="neutral">—</td><td class="status-ok">✅</td></tr>
-      <tr style="background:rgba(211,47,47,0.12)"><td style="text-align:left;">2026/05/27（三）🔴</td><td>155.50</td><td class="down">-5.00</td><td class="down">-3.12%</td><td class="down">-3.12%</td><td class="status-stop">🔴 跌破季線</td></tr>
-      <tr><td style="text-align:left;">2026/05/28（四）</td><td><b>160.00</b></td><td class="up">+4.50</td><td class="up">+2.89%</td><td class="down">-0.31%</td><td class="status-ok">✅</td></tr>
-    </tbody>
-  </table>
-</div>
-
-<!-- ========== 3006 晶豪科 ========== -->
-<div class="card">
-  <div class="card-header">
-    <div>
-      <span class="stock-name">晶豪科</span>
-      <span class="stock-code">3006.TW</span>
-      <span class="tag">進行中</span>
-    </div>
-    <div style="color:var(--text2);font-size:0.84em;">推薦：2026/05/26（二）</div>
-  </div>
-  <div class="industry">📌 <strong>產業類別：</strong>記憶體／DRAM — 四月獲利創歷史新高，月增率亮眼</div>
-  <div class="info-grid">
-    <div class="info-item"><span class="info-label">推薦日收盤價</span><span class="info-value" style="color:var(--accent)">231.50 元</span></div>
-    <div class="info-item"><span class="info-label">停損規則</span><span class="info-value" style="color:#f0a520">跌破月均線（或雙跌破 218 元與月均線）</span></div>
-  </div>
-  <div class="reasons">
-    【<strong style="color:#4fc3f7">技術面</strong>】股價在五月均線上形成穩健整理，看好蓄積多頭持續再往上<br>
-    【<strong style="color:#81c784">基本面</strong>】四月獲利創歷史新高<br>
-    【<strong style="color:#ffb74d">題材面</strong>】記憶體產業景氣復甦
-  </div>
-  <div class="section-title">📈 每日追蹤</div>
-  <table>
-    <thead><tr><th>日期</th><th>收盤價</th><th>漲跌</th><th>漲跌幅%</th><th>距推薦日%</th><th>停損</th></tr></thead>
-    <tbody>
-      <tr><td style="text-align:left;color:var(--accent);">2026/05/26（推薦日）</td><td>231.50</td><td class="neutral">—</td><td class="neutral">—</td><td class="neutral">—</td><td class="status-ok">✅</td></tr>
-      <tr><td style="text-align:left;">2026/05/27（三）</td><td>241.00</td><td class="up">+9.50</td><td class="up">+4.10%</td><td class="up">+4.10%</td><td class="status-ok">✅</td></tr>
-      <tr><td style="text-align:left;">2026/05/28（四）</td><td><b>242.50</b></td><td class="up">+1.50</td><td class="up">+0.62%</td><td class="up">+4.75%</td><td class="status-ok">✅</td></tr>
-    </tbody>
-  </table>
-</div>
-
-<!-- ========== 3264 欣銓 ========== -->
-<div class="card">
-  <div class="card-header">
-    <div>
-      <span class="stock-name">欣銓</span>
-      <span class="stock-code">3264.TWO</span>
-      <span class="tag">進行中</span>
-    </div>
-    <div style="color:var(--text2);font-size:0.84em;">推薦：2026/05/26（二）</div>
-  </div>
-  <div class="industry">📌 <strong>產業類別：</strong>IC測試代工 — 四月營收創新高，重新挑戰前波高點</div>
-  <div class="info-grid">
-    <div class="info-item"><span class="info-label">推薦日收盤價</span><span class="info-value" style="color:var(--accent)">231.00 元</span></div>
-    <div class="info-item"><span class="info-label">停損規則</span><span class="info-value" style="color:#f0a520">全數跌破五日、十日均線停損</span></div>
-  </div>
-  <div class="reasons">
-    【<strong style="color:#4fc3f7">技術面</strong>】股價創新高站上三條短期均線，重新挑戰前波高點<br>
-    【<strong style="color:#81c784">基本面</strong>】四月營收創新高<br>
-    【<strong style="color:#ffb74d">題材面</strong>】IC測試需求持續強勁
-  </div>
-  <div class="section-title">📈 每日追蹤</div>
-  <table>
-    <thead><tr><th>日期</th><th>收盤價</th><th>漲跌</th><th>漲跌幅%</th><th>距推薦日%</th><th>停損</th></tr></thead>
-    <tbody>
-      <tr><td style="text-align:left;color:var(--accent);">2026/05/26（推薦日）</td><td>231.00</td><td class="neutral">—</td><td class="neutral">—</td><td class="neutral">—</td><td class="status-ok">✅</td></tr>
-      <tr><td style="text-align:left;">2026/05/27（三）</td><td>229.50</td><td class="down">-1.50</td><td class="down">-0.65%</td><td class="down">-0.65%</td><td class="status-ok">✅</td></tr>
-      <tr><td style="text-align:left;">2026/05/28（四）</td><td><b>235.50</b></td><td class="up">+6.00</td><td class="up">+2.61%</td><td class="up">+1.95%</td><td class="status-ok">✅</td></tr>
-    </tbody>
-  </table>
-</div>
-
-<!-- ========== 已結束 ========== -->
-<div class="card">
-  <div class="section-title">📋 已結束持倉</div>
-
-  <!-- ========== 2388 威盛 (已結束) ========== -->
-  <div class="card-ended">
-    <div class="card-header">
-      <div>
-        <span class="stock-name">威盛</span>
-        <span class="stock-code">2388.TW</span>
-        <span class="tag-ended">已結束</span>
-      </div>
-      <div style="color:var(--text2);font-size:0.84em;">推薦：2026/05/21（四）→ 停損：2026/05/27（三）</div>
-    </div>
-    <div class="exit-info">
-      <strong>🔴 已停損出場</strong> ｜ 出場價 <strong>74.40 元</strong> ｜ 虧損 <strong style="color:var(--green);">-13.49%</strong><br>
-      <span style="color:var(--red);">停損原因：跌破五日、十日與月均線（5MA/10MA/月線），觸發停損規則出場</span>
-    </div>
-    <div class="info-grid">
-      <div class="info-item"><span class="info-label">推薦日收盤價</span><span class="info-value" style="color:var(--accent)">86.00 元</span></div>
-      <div class="info-item"><span class="info-label">出場價</span><span class="info-value" style="color:var(--red)">74.40 元</span></div>
-      <div class="info-item"><span class="info-label">虧損</span><span class="info-value" style="color:var(--green);">-13.49%</span></div>
-      <div class="info-item"><span class="info-label">持有天數</span><span class="info-value">6 個交易日</span></div>
-    </div>
-    <div class="reasons">
-      【<strong style="color:#4fc3f7">技術面</strong>】股價創波段新高，突破5/4波段最大量高點壓力，成功換手型態<br>
-      【<strong style="color:#ce93d8">籌碼面</strong>】外資買超高強度連動，前天單日大買近九千張<br>
-      【<strong style="color:#81c784">基本面</strong>】3月營收11.28億（月增89.2%、年增69.4%），4月維持11.14億高檔（年增超過八成）
-    </div>
-    <div class="section-title">📈 每日追蹤</div>
-    <table>
-      <thead><tr><th>日期</th><th>收盤價</th><th>漲跌</th><th>漲跌幅%</th><th>距推薦日%</th><th>停損</th></tr></thead>
-      <tbody>
-        <tr><td style="text-align:left;color:var(--accent);">2026/05/21（推薦日）</td><td>86.00</td><td class="neutral">—</td><td class="neutral">—</td><td class="neutral">—</td><td class="status-ok">✅</td></tr>
-        <tr><td style="text-align:left;">2026/05/22（五）</td><td>88.00</td><td class="up">+2.00</td><td class="up">+2.33%</td><td class="up">+2.33%</td><td class="status-ok">✅</td></tr>
-        <tr><td style="text-align:left;">2026/05/25（一）</td><td>84.20</td><td class="down">-3.80</td><td class="down">-4.32%</td><td class="down">-2.09%</td><td class="status-ok">✅</td></tr>
-        <tr style="background:rgba(211,47,47,0.15)"><td style="text-align:left;">2026/05/26（二）盤中 🔴</td><td>78.70</td><td class="down">-5.50</td><td class="down">-6.53%</td><td class="down">-8.49%</td><td class="status-stop">🔴</td></tr>
-        <tr style="background:rgba(211,47,47,0.20)"><td style="text-align:left;">2026/05/26（二）**收盤** 🔴</td><td><b>78.00</b></td><td class="down">-6.20</td><td class="down">-7.36%</td><td class="down">-9.30%</td><td class="status-stop">🔴</td></tr>
-        <tr style="background:rgba(211,47,47,0.25)"><td style="text-align:left;color:var(--red);">2026/05/27（三）🛑 停損出場</td><td><b>74.40</b></td><td class="down">-3.60</td><td class="down">-4.62%</td><td class="down">-13.49%</td><td class="status-stop">🔴 停損出場</td></tr>
-      </tbody>
-    </table>
-  </div>
 </div>
 
 <div class="footer">
-  最後更新時間：2026-05-28 14:20（收盤確認） &nbsp;|&nbsp; 資料來源：TWSE 官方收盤資料 + Yahoo Finance（3264 上櫃）<br>
-  ⚠️ 嚴格執行停損 — 觸及即標記退出
+  資料來源：PressPlay 浦惠投顧專欄 / 收盤數據：TWSE + Yahoo Finance &nbsp;|&nbsp; 更新於 2026/06/09 13:45
 </div>
-
 </body>
 </html>
